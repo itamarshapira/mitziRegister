@@ -1,0 +1,93 @@
+/* Itamar Shapira : 315387902 */
+/* Ofir Roditi : 208647297 */
+body { 
+    background: no-repeat center center fixed url("cat.jpg");
+    background-size: cover; 
+    background-position: center; /* Center the background image */ 
+}
+
+hr{color: black;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.5);}
+
+container{height: 50vh;}
+
+h1 
+{
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.6;
+    color: #0a0000;
+    margin-bottom: 40px;
+}
+
+#logo:hover{transition: all 3s ;transform: rotate(1080deg) scale(5) ;}
+
+
+#form
+{ display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 50vh;
+}
+    
+    
+
+form input {
+    padding: 6px;
+    border: 5px solid #ccc;
+    box-sizing: border-box;   
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+#name-group
+{
+    display: inline-block;
+   
+}
+
+#firstName:hover,
+#lastName:hover,
+#email:hover,
+#password:hover,
+#confirmPassword:hover {
+    background-color: orange;
+    border-color: orange;
+    border-width: thick;
+}
+
+
+#submit:hover,
+#reset:hover
+{
+    background-color:lightblue ;
+    border-color: lightblue;
+    border-width: thick;
+}
+
+fieldset{height: 50vh;}
+
+
+.is-invalid {
+    border-color: rgb(244, 0, 0);
+}
+
+
+#messege{
+    font-size: 14px;
+    margin: 15px 0;
+    display: inline-block;
+    color: #ffffff;
+}
+
+#email_message{
+    font-size: 18px;
+    margin: 19px 0;
+    display: inline-block;
+    color: #000000;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.5);
+    background-color: lightcoral;
+}
