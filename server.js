@@ -51,6 +51,11 @@ app.post('/submit', (req, res) => {
     return;
 }
 
+// if(!newSubmit.first_name || newSubmit.first_name.trim().length===0){
+//   res.status(400).json({ error: 'SERVER SIDE: Register error' });
+//   return;
+// }
+
   tasks_coll.insert(newSubmit, (err, doc) => {
       if (err) {
           res.status(500).json({ error: 'Internal Server Error' });
@@ -60,18 +65,23 @@ app.post('/submit', (req, res) => {
   });
 });
 
-// // DELETE request to delete a specific task
-// app.delete('/tasks/:id', (req, res) => {
-//   const taskId = mongojs.ObjectId(req.params.id);
-//   tasks_coll.remove({_id:taskId}, true,(err, doc) => {
-//     if (err) {
-//       res.status(500).json({ error: 'Internal Server Error' });
-//     } else {
-//       res.json({msg:"Successfully deleted"}); 
-//     }
-//   });
-  
-// });
+
+// DELETE request to delete a user by email and password
+app.delete('/submit', (req, res) => {
+  const { email, password } = req.body;
+
+  // Find the user by email and password
+  tasks_coll.remove({ email: email, password: password }, { justOne: true }, (err, doc) => {
+    if (err) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else if (doc.deletedCount === 0) {
+      res.status(404).json({ error: 'User not found or incorrect password' });
+    } else {
+      res.json({ message: 'User deleted successfully' });
+    }
+  });
+});
+
 
 
 
