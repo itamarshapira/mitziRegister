@@ -34,7 +34,7 @@ submitBtn.addEventListener('click', async function(event) {// When the "register
         return;
     }
 
-    ajax_add_register(firstNameText, lastNameText, emailText, passwordText); // Add the new register via AJAX
+    ajax_add_register(firstNameText, lastNameText, emailText, passwordText,confirmPasswordText); // Add the new register via AJAX
 });
 
 // func that validateForm
@@ -42,7 +42,7 @@ const validateForm = (firstName, lastName, email, password, confirmPassword) => 
     // Check if any field is empty
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
         alert('All fields are required.');
-        return false;
+        return false;   
     }
 
     // Check if password is at least 8 characters long
@@ -60,8 +60,9 @@ const validateForm = (firstName, lastName, email, password, confirmPassword) => 
     return true;
 }
 
+
  // Function to add a new task via AJAX and connected to the POST in the server side!
-const ajax_add_register = (name, lastName, email, password) => {
+const ajax_add_register = (name, lastName, email, password ,confirmPassword) => {
     fetch("http://localhost:3000/submit", { // Make a POST request to the server
         method: "POST",
         headers: {
@@ -72,7 +73,9 @@ const ajax_add_register = (name, lastName, email, password) => {
             first_name: name,
             last_name: lastName,
             email: email,
-            password: password
+            password: password,
+            confirmPassword: confirmPassword
+
         })
     }).then((res) => {
         if (res.ok) {
@@ -153,3 +156,53 @@ emailIn.addEventListener('input', async function() {
         submitBtn.disabled = false;
     }
 });
+
+
+// export default validateForm;
+//module.exports = register;
+
+
+// delete
+
+const emailDeleteIn = document.getElementById('emailDelete');
+const passwordDeleteIn = document.getElementById('passwordDelete');
+const deleteBtn = document.getElementById('DeleteDelete');
+
+deleteBtn.addEventListener('click', async function(event) {
+  event.preventDefault();
+  const emailDeleteText = emailDeleteIn.value.trim();
+  const passwordDeleteText = passwordDeleteIn.value.trim();
+
+  // Validate input fields
+  if (!emailDeleteText || !passwordDeleteText) {
+    alert('Both email and password are required.');
+    return;
+  }
+
+  ajax_delete_user(emailDeleteText, passwordDeleteText);
+});
+
+const ajax_delete_user = (email, password) => {
+  fetch("http://localhost:3000/submit", { // Make a DELETE request to the server
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password
+    })
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      throw new Error("Error deleting user");
+    }
+  }).then((data) => {
+    alert(data.message || "Deleted successfully!");
+    window.location.href = "/";
+  }).catch((err) => {
+    console.error(err);
+    alert("An error occurred while deleting the user. Please try again.");
+  });
+};

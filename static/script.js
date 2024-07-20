@@ -20,9 +20,10 @@
 
 
  // Add event listeners to the form elements for validation
+ 
+ //emailInput.addEventListener("input", validateEmail);
+ 
  lastNameInput.addEventListener("input", validateLastName);
- emailInput.addEventListener("input", validateEmail);
-
 function validateLastName() {
     // Check if the last name is valid
     if (lastNameInput.value.trim() === "") {

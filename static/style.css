@@ -91,3 +91,29 @@ fieldset{height: 50vh;}
     box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.5);
     background-color: lightcoral;
 }
+
+/* style.css */
+
+/* Ensure proper spacing and alignment */
+/* #delete {
+    margin-top: 20px;
+    height: 50vh;
+    @media only screen and{
+        
+    }
+} */
+
+/* Responsive adjustments */
+ @media only screen and (max-width: 600px) {
+    
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    
+}
+
+@media only screen and (min-width: 900x) {
+    
+}
+
+
